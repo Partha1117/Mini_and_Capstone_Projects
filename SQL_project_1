@@ -1,0 +1,224 @@
+/* Showing results for passenger.xlsx */
+show databases;  
+use travego;
+/* CREATE TABLE */
+CREATE TABLE passenger(
+Passenger_id DOUBLE,
+Passenger_name VARCHAR(100),
+Category VARCHAR(100),
+Gender VARCHAR(100),
+Boarding_City VARCHAR(100),
+Destination_City VARCHAR(100),
+Distance DOUBLE,
+Bus_Type VARCHAR(100)
+);
+
+/* INSERT QUERY NO: 1 */
+INSERT INTO passenger(Passenger_id, Passenger_name, Category, Gender, Boarding_City, Destination_City, Distance, Bus_Type)
+VALUES
+(
+1, 'Sejal', 'AC', 'F ', 'Bengaluru', 'Chennai', 350, 'Sleeper'
+);
+
+/* INSERT QUERY NO: 2 */
+INSERT INTO passenger(Passenger_id, Passenger_name, Category, Gender, Boarding_City, Destination_City, Distance, Bus_Type)
+VALUES
+(
+2, 'Anmol', 'Non-AC', 'M', 'Mumbai ', 'Hyderabad', 700, 'Sitting'
+);
+
+/* INSERT QUERY NO: 3 */
+INSERT INTO passenger(Passenger_id, Passenger_name, Category, Gender, Boarding_City, Destination_City, Distance, Bus_Type)
+VALUES
+(
+3, 'Pallavi', 'AC', 'F', 'Panaji                  ', 'Bengaluru', 600, 'Sleeper'
+);
+
+/* INSERT QUERY NO: 4 */
+INSERT INTO passenger(Passenger_id, Passenger_name, Category, Gender, Boarding_City, Destination_City, Distance, Bus_Type)
+VALUES
+(
+4, 'Khusboo ', 'AC', 'F', 'Chennai', 'Mumbai', 1500, 'Sleeper'
+);
+
+/* INSERT QUERY NO: 5 */
+INSERT INTO passenger(Passenger_id, Passenger_name, Category, Gender, Boarding_City, Destination_City, Distance, Bus_Type)
+VALUES
+(
+5, 'Udit', 'Non-AC ', 'M', 'Trivandrum', 'Panaji', 1000, 'Sleeper'
+);
+
+/* INSERT QUERY NO: 6 */
+INSERT INTO passenger(Passenger_id, Passenger_name, Category, Gender, Boarding_City, Destination_City, Distance, Bus_Type)
+VALUES
+(
+6, 'Ankur', 'AC', 'M', 'Nagpur', 'Hyderabad', 500, 'Sitting'
+);
+
+/* INSERT QUERY NO: 7 */
+INSERT INTO passenger(Passenger_id, Passenger_name, Category, Gender, Boarding_City, Destination_City, Distance, Bus_Type)
+VALUES
+(
+7, 'Hemant', 'Non-AC', 'M', 'Panaji', 'Mumbai ', 700, 'Sleeper'
+);
+
+/* INSERT QUERY NO: 8 */
+INSERT INTO passenger(Passenger_id, Passenger_name, Category, Gender, Boarding_City, Destination_City, Distance, Bus_Type)
+VALUES
+(
+8, 'Manish', 'Non-AC', 'M', 'Hyderabad', 'Bengaluru', 500, 'Sitting'
+);
+
+/* INSERT QUERY NO: 9 */
+INSERT INTO passenger(Passenger_id, Passenger_name, Category, Gender, Boarding_City, Destination_City, Distance, Bus_Type)
+VALUES
+(
+9, 'Piyush', 'AC', 'M', 'Pune', 'Nagpur', 700, 'Sitting'
+);
+
+/* Showing results for price.xlsx */
+
+/* CREATE TABLE */
+CREATE TABLE price(
+id DOUBLE,
+Bus_type VARCHAR(100),
+Distance DOUBLE,
+Price DOUBLE
+);
+
+/* INSERT QUERY NO: 1 */
+INSERT INTO price(id, Bus_type, Distance, Price)
+VALUES
+(
+1, 'Sleeper', 350, 770
+);
+
+/* INSERT QUERY NO: 2 */
+INSERT INTO price(id, Bus_type, Distance, Price)
+VALUES
+(
+2, 'Sleeper', 500, 1100
+);
+
+/* INSERT QUERY NO: 3 */
+INSERT INTO price(id, Bus_type, Distance, Price)
+VALUES
+(
+3, 'Sleeper', 600, 1320
+);
+
+/* INSERT QUERY NO: 4 */
+INSERT INTO price(id, Bus_type, Distance, Price)
+VALUES
+(
+4, 'Sleeper', 700, 1540
+);
+
+/* INSERT QUERY NO: 5 */
+INSERT INTO price(id, Bus_type, Distance, Price)
+VALUES
+(
+5, 'Sleeper', 1000, 2200
+);
+
+/* INSERT QUERY NO: 6 */
+INSERT INTO price(id, Bus_type, Distance, Price)
+VALUES
+(
+6, 'Sleeper', 1200, 2640
+);
+
+/* INSERT QUERY NO: 7 */
+INSERT INTO price(id, Bus_type, Distance, Price)
+VALUES
+(
+7, 'Sleeper', 1500, 2700
+);
+
+/* INSERT QUERY NO: 8 */
+INSERT INTO price(id, Bus_type, Distance, Price)
+VALUES
+(
+8, 'Sitting', 500, 620
+);
+
+/* INSERT QUERY NO: 9 */
+INSERT INTO price(id, Bus_type, Distance, Price)
+VALUES
+(
+9, 'Sitting', 600, 744
+);
+
+/* INSERT QUERY NO: 10 */
+INSERT INTO price(id, Bus_type, Distance, Price)
+VALUES
+(
+10, 'Sitting', 700, 868
+);
+
+/* INSERT QUERY NO: 11 */
+INSERT INTO price(id, Bus_type, Distance, Price)
+VALUES
+(
+11, 'Sitting', 1000, 1240
+);
+
+/* INSERT QUERY NO: 12 */
+INSERT INTO price(id, Bus_type, Distance, Price)
+VALUES
+(
+12, 'Sitting', 1200, 1488
+);
+
+/* INSERT QUERY NO: 13 */
+INSERT INTO price(id, Bus_type, Distance, Price)
+VALUES
+(
+13, 'Sitting', 1500, 1860
+);
+
+show tables;
+select *,passenger_name from passenger ;
+select * from price;
+select * from passenger;
+select count(Gender) as number_of_people,gender, Distance from passenger where Distance >= 600 group by gender;
+select Bus_type,min(price) from price where Bus_type = 'Sleeper'; 
+
+
+select * from passenger where Passenger_name like "S%";
+
+select Passenger_name,Boarding_City,Destination_City,a.Bus_Type, b.Price,b.Bus_Type  
+from passenger a
+left join
+price b
+on b.distance = a.distance;
+
+select passenger_name,price.price,price.distance,price.bus_type
+from passenger
+join 
+price
+on passenger.distance = price.distance
+where passenger.distance = '1000' 
+and
+passenger.bus_type = 'Sitting';
+
+--Sitting and Sleeper bus charge for Pallavi to travel from Bangalore to Panaji;
+
+select * from passenger;
+select * from price;
+
+select *
+from passenger
+join price
+on passenger.Distance = price.Distance
+where passenger.passenger_name = 'Pallavi'; 
+
+select distinct *,distance from passenger order by distance desc;
+
+--percentage of distance traveled by that passenger from the total distance traveled by all passengers;
+
+select passenger_name,dist_perc from passenger where (dist_perc = (distance / sum(distance)*100));
+
+select passenger_name, distance*100.0/(select sum(distance) from passenger) 
+from passenger 
+group by distance;
